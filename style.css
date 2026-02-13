@@ -48,12 +48,13 @@ header {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 800;
     background: linear-gradient(135deg, #60a5fa, #f472b6);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 /* Stats & Controls Panel */
@@ -62,14 +63,21 @@ h1 {
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.5rem;
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.stat-group {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
 }
 
 .stat-item {
@@ -80,33 +88,37 @@ h1 {
 }
 
 .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-dim);
 }
 
 .stat-value {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 700;
 }
 
 /* Controls */
 .controls {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 button {
-    padding: 0.75rem 1.25rem;
+    padding: 0.6rem 1rem;
     border-radius: 0.75rem;
     border: none;
     font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -132,29 +144,36 @@ button {
 }
 
 .difficulty-select {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 0.5rem;
     outline: none;
+    font-size: 0.8rem;
 }
 
 /* Board Styling */
 .board-container {
     position: relative;
-    padding: 10px;
+    padding: 8px;
     background: #1e293b;
     border-radius: 12px;
     box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 580px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #board {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    width: min(85vw, 560px);
-    height: min(85vw, 560px);
+    width: 100%;
+    height: 100%;
     border: 4px solid #0f172a;
     border-radius: 4px;
     position: relative;
@@ -169,8 +188,13 @@ button {
     position: relative;
 }
 
-.square.light { background-color: var(--board-light); }
-.square.dark { background-color: var(--board-dark); }
+.square.light {
+    background-color: var(--board-light);
+}
+
+.square.dark {
+    background-color: var(--board-dark);
+}
 
 .square.highlight-valid::after {
     content: '';
@@ -196,8 +220,8 @@ button {
 
 /* Piece Styling */
 .piece {
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 85%;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
@@ -212,7 +236,10 @@ button {
 .piece::before {
     content: '';
     position: absolute;
-    top: 10%; left: 10%; width: 80%; height: 80%;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
@@ -234,20 +261,30 @@ button {
 
 .piece.king::after {
     content: '👑';
-    font-size: 1.5rem;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
     animation: kingAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes kingAppear {
-    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
 }
 
 /* Modal / Game Over */
 #game-over {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(15, 23, 42, 0.9);
     display: none;
     flex-direction: column;
@@ -259,21 +296,28 @@ button {
 
 .modal-content {
     background: #1e293b;
-    padding: 3rem;
+    padding: clamp(1.5rem, 5vw, 3rem);
     border-radius: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    max-width: 400px;
+    width: min(90%, 400px);
     animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes modalPop {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 #game-over h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
     margin-bottom: 1rem;
 }
 
@@ -283,15 +327,69 @@ button {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
 }
 
 /* Mobile Adjustments */
 @media (max-width: 600px) {
-    .game-panel { padding: 1rem; gap: 1rem; }
-    h1 { font-size: 1.75rem; }
-    .stat-value { font-size: 1rem; }
-    button { padding: 0.5rem 1rem; font-size: 0.875rem; }
-    .piece.king::after { font-size: 1.2rem; }
+    .container {
+        gap: 1rem;
+    }
+
+    .game-panel {
+        padding: 0.75rem;
+        flex-direction: column;
+        border-radius: 1rem;
+        gap: 1rem;
+    }
+
+    .stat-group {
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .controls {
+        width: 100%;
+        gap: 0.4rem;
+    }
+
+    button {
+        width: 100%;
+        justify-content: center;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-height: 700px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    header {
+        display: none;
+    }
+
+    .game-panel {
+        width: auto;
+        min-width: 250px;
+        flex-direction: column;
+    }
+
+    .board-container {
+        max-width: 80vh;
+    }
 }
