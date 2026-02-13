@@ -46,8 +46,8 @@ Then visit `http://localhost:8080`.
 ### 3️⃣ Docker Hub
 Pull the pre-built image from Docker Hub:
 ```bash
-docker pull alfredang/checker-game:latest
-docker run -d -p 8080:80 alfredang/checker-game:latest
+docker pull tertiaryinfotech/checker-game:latest
+docker run -d -p 8080:80 tertiaryinfotech/checker-game:latest
 ```
 
 ---
