@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandmaster Checkers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>GRANDMASTER</h1>
+            <p style="color: var(--text-dim)">PRO-EDITION CHECKERS</p>
+        </header>
+
+        <div class="game-panel">
+            <div class="stat-item">
+                <span class="stat-label">Current Turn</span>
+                <span id="turn-display" class="stat-value p1-text turn-active" style="color: var(--player-1)">Player
+                    1</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Opponent</span>
+                <span id="mode-display" class="stat-value">Local PvP</span>
+            </div>
+
+            <div class="controls">
+                <select id="difficulty" class="difficulty-select" style="display: none;">
+                    <option value="easy">Easy AI</option>
+                    <option value="hard" selected>Master AI</option>
+                </select>
+                <button id="toggle-mode" class="btn-outline">VS AI</button>
+                <button id="reset-game" class="btn-primary">Restart</button>
+            </div>
+        </div>
+
+        <div class="board-container">
+            <div id="board"></div>
+        </div>
+    </div>
+
+    <div id="game-over">
+        <div class="modal-content">
+            <h2 id="winner-text">Blue Wins!</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-dim)">Dominant performance on the board.</p>
+            <button id="play-again" class="btn-primary" style="margin: 0 auto;">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
