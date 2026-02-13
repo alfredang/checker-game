@@ -2,7 +2,7 @@
 
 A complete, production-ready Checkers (Draughts) game built with Vanilla HTML, CSS, and JavaScript. Featuring a sleek modern UI and a strategic Minimax AI.
 
-![Grandmaster Checkers Gameplay](assets/screenshot_desktop.webp)
+![Grandmaster Checkers Gameplay](assets/checker-game.png)
 
 ## 🚀 Live Demo
 Play the game live: [https://alfredang.github.io/checker-game/](https://alfredang.github.io/checker-game/)
