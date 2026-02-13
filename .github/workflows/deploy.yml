@@ -35,7 +35,7 @@ jobs:
   build-and-push-docker:
     runs-on: ubuntu-latest
     # Only run if DockerHub secrets are set
-    if: "${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}"
+    if: secrets.DOCKERHUB_USERNAME != ''
     steps:
       - uses: actions/checkout@v4
       - name: Login to DockerHub
