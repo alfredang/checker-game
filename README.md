@@ -5,6 +5,9 @@ A complete, production-ready Checkers (Draughts) game built with Vanilla HTML, C
 ## 🚀 Live Demo
 Play the game live: [https://alfredang.github.io/checker-game/](https://alfredang.github.io/checker-game/)
 
+> [!IMPORTANT]
+> To enable the live demo, go to your repository **Settings > Pages** and under **Build and deployment > Source**, select **"GitHub Actions"**.
+
 ---
 
 ## 🛠 Features
